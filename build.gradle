@@ -1,0 +1,25 @@
+plugins {
+    id 'groovy'
+    id 'application'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.codehaus.groovy:groovy:3.0+"
+    implementation "org.codehaus.groovy:groovy-templates:3.0+"
+    implementation 'org.optaplanner:optaplanner-core:7.45.0.Final'
+    implementation 'org.optaplanner:optaplanner-benchmark:7.45.0.Final'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+}
+
+application {
+    mainClassName = 'org.example.App'
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
