@@ -15,6 +15,7 @@ class Schedule {
 
     @PlanningEntityCollectionProperty
     List<OB> observations
+
     @PlanningScore
     HardMediumSoftScore score
 }

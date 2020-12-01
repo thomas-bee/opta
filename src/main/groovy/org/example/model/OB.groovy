@@ -8,6 +8,7 @@ import org.optaplanner.core.api.domain.variable.PlanningVariable
 public class OB {
     @PlanningVariable(nullable = true, valueRangeProviderRefs = "timeslotRange")
     Timeslot start
+
     @PlanningId
     int obId
 
@@ -16,5 +17,4 @@ public class OB {
     }
 
     OB() {}
-
 }

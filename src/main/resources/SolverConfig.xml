@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solver>
-    <!--<environmentMode>FULL_ASSERT</environmentMode>--><!-- To slowly prove there are no bugs in this code -->
-    <moveThreadCount>4</moveThreadCount> <!-- To solve faster by saturating multiple CPU cores -->
+<solver xmlns="https://www.optaplanner.org/xsd/solver" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.optaplanner.org/xsd/solver https://www.optaplanner.org/xsd/solver/solver.xsd">
 
+    <!-- To slowly prove there are no bugs in this code -->
+    <environmentMode>FAST_ASSERT</environmentMode>
+
+    <!-- register planning solution and planning entity classes -->
     <solutionClass>org.example.model.Schedule</solutionClass>
     <entityClass>org.example.model.OB</entityClass>
 
+    <!-- constraint registration -->
     <scoreDirectorFactory>
         <constraintProviderClass>org.example.service.ScheduleConstraintProvider</constraintProviderClass>
     </scoreDirectorFactory>
 
+    <!-- termination criteria -->
     <termination>
+        <terminationCompositionStyle>OR</terminationCompositionStyle>
+        <minutesSpentLimit>5</minutesSpentLimit>
+        <unimprovedSpentLimit>PT2M30S</unimprovedSpentLimit>
         <bestScoreFeasible>true</bestScoreFeasible>
-        <minutesSpentLimit>10</minutesSpentLimit>
     </termination>
+
+    <!-- phase 1 -->
+    <constructionHeuristic>
+        <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
+    </constructionHeuristic>
+
+    <!--
+        <localSearch>
+            <localSearchType>LATE_ACCEPTANCE</localSearchType>
+            <unionMoveSelector>
+                <changeMoveSelector/>
+                <swapMoveSelector/>
+            </unionMoveSelector>
+        </localSearch>
+    -->
 </solver>
