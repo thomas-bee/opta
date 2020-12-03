@@ -24,9 +24,9 @@ class ExampleSolver {
         problem.timeslots = (1..10).collect(it -> new Timeslot(it))
         solve(problem) // => gives, as expected, 0hard/-1medium/0soft
 
-        println "***** Put 12 Observations into 10 TimeSlots"
+        println "***** Put 15 Observations into 10 TimeSlots"
         problem = new Schedule()
-        problem.observations = (1..12).collect(it -> new OB(it))
+        problem.observations = (1..15).collect(it -> new OB(it))
         problem.timeslots = (1..10).collect(it -> new Timeslot(it))
         solve(problem) // => gives, UNEXPECTEDLY, -1hard/-1medium/0soft
     }

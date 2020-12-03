@@ -12,9 +12,7 @@ public class OB {
     @PlanningId
     int obId
 
-    OB(int obId) {
-        this.obId = obId
-    }
+    OB(int obId) {this.obId = obId }
 
-    OB() {}
+    OB() {} // required by Optaplanner, not sure why
 }

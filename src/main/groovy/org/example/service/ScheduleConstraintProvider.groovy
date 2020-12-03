@@ -5,7 +5,6 @@ import org.optaplanner.core.api.score.stream.Constraint
 import org.optaplanner.core.api.score.stream.ConstraintFactory
 import org.optaplanner.core.api.score.stream.ConstraintProvider
 import org.example.model.OB
-import org.optaplanner.core.api.score.stream.Joiners
 
 class ScheduleConstraintProvider implements ConstraintProvider {
     @Override
@@ -18,7 +17,11 @@ class ScheduleConstraintProvider implements ConstraintProvider {
 
     Constraint notSameSlot(ConstraintFactory constraintFactory) {
         constraintFactory.fromUniquePair(OB.class)
-            .filter({ ob1, ob2 -> ob1.start == ob2.start })
+            .filter({ ob1, ob2 ->
+                ob1.start !== null &&
+                ob2.start !== null &&
+                ob1.start.slot == ob2.start.slot
+            })
             .penalize("overlap", HardMediumSoftScore.ONE_HARD)
     }
 
